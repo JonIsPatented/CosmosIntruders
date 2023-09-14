@@ -1,7 +1,6 @@
 package com.jonispatented.cosmos_intruders.ui;
 
 import com.jonispatented.cosmos_intruders.game_logic.GameEngine;
-import com.jonispatented.cosmos_intruders.game_logic.entities.Entity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,19 +14,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
-
+        setBackground(Color.BLACK);
         setPreferredSize(new Dimension(gameEngine.getWindowWidth(), gameEngine.getWindowHeight()));
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        setBackground(Color.BLACK);
-        for (Entity e : new ArrayList<>(gameEngine.getEntities())) {
-            e.render(g);
-        }
-
+        new ArrayList<>(gameEngine.getEntities()).forEach(e -> e.render(g));
         gameEngine.getScoreStateManager().drawScoreDisplay(g);
     }
 

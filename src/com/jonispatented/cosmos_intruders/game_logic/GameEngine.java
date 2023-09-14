@@ -49,11 +49,11 @@ public class GameEngine implements Runnable {
         entities.addAll(entitiesToAdd);
         entitiesToAdd.clear();
 
-        for (Entity entity : entities) {
-            entity.move();
-            entity.collide();
-            entity.attack();
-        }
+        entities.forEach(e -> {
+            e.move();
+            e.collide();
+            e.attack();
+        });
 
         entities.removeAll(entitiesToRemove);
         enemyBlocks.forEach(list -> list.removeAll(entitiesToRemove));
